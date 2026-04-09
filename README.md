@@ -33,118 +33,14 @@ A API consumida é https://my-json-server.typicode.com/Sifat-devs/db-desafio-fro
 
 Roda npm install pra instalar as dependências e npm run dev pra subir o servidor local. O Vite abre geralmente na porta 5173. Pra build de produção, npm run build gera a pasta dist/ pronta pra deploy.
 
-Endpoints:
-`GET /produtos_cadastrados`
-`POST /produtos_cadastrados`
-`PUT /produtos_cadastrados/{id}`
-`DELETE /produtos_cadastrados/{id}`
-`GET /grupos`
-`GET /vendas`
+
+## Sobre a API
+
+A API é o my-json-server do typicode. Ela simula operações de escrita (POST, PUT, DELETE retornam sucesso) mas não persiste nada no servidor. Ou seja, se recarregar a página, volta tudo pro estado original.
+
+Pra contornar isso, todas as operações de CRUD (criar, editar, deletar produto e criar pedido) fazem a chamada pra API normalmente e depois atualizam o estado local no React. O usuário vê o resultado na hora, mas se der F5 volta ao original. Isso é limitação da API gratuita, não do frontend.
 
 
-## Tecnologias Utilizadas
-
-React 18 (via CDN)
-Babel Standalone (para JSX)
-CSS Puro (sem framework)
-Fetch API (requisições HTTP)
-HTML5 Semântico
-
-
-## Comportamento da API
-
-### Importante
-O My JSON Server simula operações de escrita. Isso significa:
-
-POST, PUT, DELETE: Retornam sucesso (200/201) mas não persistem dados no servidor
-GET: Retorna sempre os dados originais
-
-Solução implementada: O frontend reflete as mudanças localmente no estado React, mostrando o resultado esperado ao usuário mesmo que não persista no servidor.
-
-Exemplo:
-1. Usuário cria novo produto
-2. Frontend envia POST (recebe 201)
-3. Frontend adiciona o produto ao estado local
-4. Tabela atualiza imediatamente com o novo item
-
-
-## Validações de Formulário
-
-### Campos Obrigatórios
-Nome: Não pode estar vazio
-Grupo: Deve ser selecionado
-Preco de Venda: Deve ser > 0
-
-### Feedback Visual
-Campo em erro: Borda vermelha (#d32f2f)
-Toast de erro em vermelho
-Mensagem de erro abaixo do campo
-
-
-## Paginação
-
-Padrão: 10 itens por página
-
-Botões:
-Primeira (vai para página 1)
-Anterior (página anterior)
-Números de página (máximo 5 visíveis)
-Proxima (próxima página)
-Ultima (última página)
-
-
-## Filtros
-
-### Produtos
-Busca em: Nome e Grupo
-Case-insensitive
-Em tempo real
-
-### Faturamento
-Busca em: Numero Pedido
-Case-insensitive
-
-
-## Ordenação
-
-Clique no header da coluna para ordenar:
-▲: Crescente (ASC)
-▼: Decrescente (DESC)
-
-Funcionamento: Clica novamente para inverter direção
-
-
-## Cores e Design
-
-Fundo: #f8f8f8 (Cinza claro)
-Texto Principal: #1a1a1a (Preto escuro)
-Bordas: #e5e5e5 (Cinza médio)
-Hover: #fafafa (Cinza mais claro)
-Sucesso: #2e7d32 (Verde)
-Erro: #d32f2f (Vermelho)
-Primary: #000 (Preto)
-
-
-## Responsividade
-
-Layout fluido com:
-Container max-width: 1400px
-Grid automático
-Flexbox para componentes
-
-Testa bem em:
-Desktop (1920px+)
-Tablet (768px+)
-Mobile (com ajustes)
-
-
-## Troubleshooting
-
-### Erro: "Failed to fetch from API"
-Solução: Verifique conexão com internet e se a URL da API está correta
-
-### Tabela vazia ao carregar
-Solução: Aguarde 2-3 segundos para a API responder
 
 ### Toast não aparece
 Solução: Verifique console para erros (F12 > Console)
