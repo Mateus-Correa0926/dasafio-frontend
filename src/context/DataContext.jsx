@@ -116,7 +116,17 @@ export const DataProvider = ({ children }) => {
     [grupos]
   );
 
-  const criarPedido = useCallback((pedido) => {
+  const criarPedido = useCallback(async (pedido) => {
+    try {
+      const res = await fetch(`${API_BASE}/vendas`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pedido),
+      });
+      if (!res.ok) throw new Error();
+    } catch {
+      // my-json-server simula o POST mas não persiste
+    }
     setVendas((prev) => [...prev, pedido]);
     setProdutos((prev) =>
       prev.map((p) => {
