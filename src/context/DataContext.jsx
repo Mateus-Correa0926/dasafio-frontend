@@ -125,7 +125,6 @@ export const DataProvider = ({ children }) => {
       });
       if (!res.ok) throw new Error();
     } catch {
-      // my-json-server simula o POST mas não persiste
     }
     setVendas((prev) => [...prev, pedido]);
     setProdutos((prev) =>
