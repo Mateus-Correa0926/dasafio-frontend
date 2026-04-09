@@ -11,6 +11,8 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { useNavigate } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 
+const fmt = (v) => (v || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
 const Produtos = () => {
   const { produtos, grupos, deleteProduto, getGrupoNome } = useData();
   const navigate = useNavigate();
@@ -151,7 +153,7 @@ const Produtos = () => {
                   <TableCell>{produto.id}</TableCell>
                   <TableCell>{produto.nome}</TableCell>
                   <TableCell>{getGrupoNome(produto.idGrupo)}</TableCell>
-                  <TableCell>R$ {(parseFloat(produto.precoVenda) || 0).toFixed(2)}</TableCell>
+                  <TableCell>{fmt(parseFloat(produto.precoVenda))}</TableCell>
                   <TableCell>{produto.quantidadeEstoque ?? 0}</TableCell>
                   <TableCell align="center">
                     <Tooltip title="Editar">

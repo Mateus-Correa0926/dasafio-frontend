@@ -11,6 +11,8 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useData } from '../context/DataContext';
 
+const fmt = (v) => (v || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
 const Dashboard = ({ vendas }) => {
   const stats = useMemo(() => {
     const totalFaturamento = vendas.reduce((s, v) => s + (parseFloat(v.valorTotalPedido) || 0), 0);
@@ -48,10 +50,10 @@ const Dashboard = ({ vendas }) => {
     <Box>
       <Grid container spacing={3} sx={{ mb: 4 }}>
         {[
-          { label: 'Faturamento Total', value: `R$ ${stats.totalFaturamento.toFixed(2)}`, icon: <AttachMoneyIcon />, color: '#2e7d32' },
+          { label: 'Faturamento Total', value: fmt(stats.totalFaturamento), icon: <AttachMoneyIcon />, color: '#2e7d32' },
           { label: 'Total de Pedidos', value: stats.totalPedidos, icon: <ReceiptIcon />, color: '#1565c0' },
           { label: 'Itens Vendidos', value: stats.totalItens, icon: <ShoppingCartIcon />, color: '#e65100' },
-          { label: 'Ticket Médio', value: `R$ ${stats.ticketMedio.toFixed(2)}`, icon: <TrendingUpIcon />, color: '#6a1b9a' },
+          { label: 'Ticket Médio', value: fmt(stats.ticketMedio), icon: <TrendingUpIcon />, color: '#6a1b9a' },
         ].map((card) => (
           <Grid item xs={12} sm={6} md={3} key={card.label}>
             <Card elevation={0} sx={{ border: '1px solid #e5e5e5' }}>
@@ -82,7 +84,7 @@ const Dashboard = ({ vendas }) => {
                   <Box sx={{ width: `${(d.total / maxVal) * 100}%`, bgcolor: '#1565c0', height: '100%', borderRadius: 1, transition: 'width 0.3s' }} />
                 </Box>
                 <Typography variant="body2" sx={{ minWidth: 110, textAlign: 'right', fontWeight: 600 }}>
-                  R$ {d.total.toFixed(2)}
+                  {fmt(d.total)}
                 </Typography>
               </Box>
             ))}
@@ -98,7 +100,7 @@ const Dashboard = ({ vendas }) => {
                   <Typography variant="body2" sx={{ fontWeight: 600 }}>{nome}</Typography>
                   <Typography variant="caption" color="text.secondary">{d.qtd} unidades vendidas</Typography>
                 </Box>
-                <Typography variant="body2" sx={{ fontWeight: 700 }}>R$ {d.valor.toFixed(2)}</Typography>
+                <Typography variant="body2" sx={{ fontWeight: 700 }}>{fmt(d.valor)}</Typography>
               </Box>
             ))}
           </Paper>
@@ -224,7 +226,7 @@ const VendasTable = ({ vendas: allVendas }) => {
                   <TableCell>{venda.idPedido}</TableCell>
                   <TableCell>{venda.data}</TableCell>
                   <TableCell>{venda.totalItensPedido}</TableCell>
-                  <TableCell>R$ {(parseFloat(venda.valorTotalPedido) || 0).toFixed(2)}</TableCell>
+                  <TableCell>{fmt(parseFloat(venda.valorTotalPedido))}</TableCell>
                 </TableRow>
               ))
             )}
@@ -248,11 +250,11 @@ const Faturamento = () => {
     <Box>
       <Typography variant="h5" sx={{ fontWeight: 700, mb: 3 }}>Faturamento</Typography>
       <Tabs value={tab} onChange={(_, v) => setTab(v)} sx={{ mb: 3, borderBottom: '1px solid #e5e5e5' }}>
-        <Tab label="Dashboard" />
         <Tab label="Vendas" />
+        <Tab label="Dashboard" />
       </Tabs>
-      {tab === 0 && <Dashboard vendas={vendas} />}
-      {tab === 1 && <VendasTable vendas={vendas} />}
+      {tab === 0 && <VendasTable vendas={vendas} />}
+      {tab === 1 && <Dashboard vendas={vendas} />}
     </Box>
   );
 };

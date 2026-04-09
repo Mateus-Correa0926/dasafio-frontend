@@ -11,6 +11,8 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 
+const fmt = (v) => (v || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
 const NovoPedido = () => {
   const { produtos, criarPedido, getGrupoNome } = useData();
   const navigate = useNavigate();
@@ -133,7 +135,7 @@ const NovoPedido = () => {
                   </Typography>
                 </Box>
                 <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                  R$ {parseFloat(option.precoVenda).toFixed(2)}
+                  {fmt(parseFloat(option.precoVenda))}
                 </Typography>
               </Box>
             )}
@@ -173,7 +175,7 @@ const NovoPedido = () => {
                     <TableCell>
                       <Typography variant="body2" sx={{ fontWeight: 600 }}>{item.nomeProduto}</Typography>
                     </TableCell>
-                    <TableCell align="center">R$ {item.valorProduto.toFixed(2)}</TableCell>
+                    <TableCell align="center">{fmt(item.valorProduto)}</TableCell>
                     <TableCell align="center">
                       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
                         <IconButton size="small" onClick={() => updateQty(item.idProduto, -1)}
@@ -202,7 +204,7 @@ const NovoPedido = () => {
                       />
                     </TableCell>
                     <TableCell align="right" sx={{ fontWeight: 600 }}>
-                      R$ {(item.valorProduto * item.quantidadeVendida).toFixed(2)}
+                      {fmt(item.valorProduto * item.quantidadeVendida)}
                     </TableCell>
                     <TableCell align="center">
                       <Tooltip title="Remover">
@@ -222,7 +224,7 @@ const NovoPedido = () => {
               Total ({totalItens} {totalItens === 1 ? 'item' : 'itens'})
             </Typography>
             <Typography variant="h6" sx={{ fontWeight: 700 }}>
-              R$ {totalPedido.toFixed(2)}
+              {fmt(totalPedido)}
             </Typography>
           </Box>
         </Paper>
