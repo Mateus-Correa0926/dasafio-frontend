@@ -111,7 +111,7 @@ const NovoPedido = () => {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ fontWeight: 700, mb: 4 }}>
+      <Typography variant="h5" sx={{ fontWeight: 700, mb: { xs: 2, md: 4 }, fontSize: { xs: 20, md: 24 } }}>
         Novo Pedido
       </Typography>
 
@@ -119,7 +119,7 @@ const NovoPedido = () => {
         <Typography variant="subtitle2" sx={{ fontWeight: 700, textTransform: 'uppercase', mb: 2, letterSpacing: 0.5 }}>
           Adicionar Produto
         </Typography>
-        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, alignItems: { sm: 'center' } }}>
           <Autocomplete
             sx={{ flex: 1 }}
             options={produtosDisponiveis}
@@ -156,9 +156,9 @@ const NovoPedido = () => {
       </Paper>
 
       {itens.length > 0 && (
-        <Paper elevation={0} sx={{ border: '1px solid #e5e5e5', mb: 3 }}>
+        <Paper elevation={0} sx={{ border: '1px solid #e5e5e5', mb: 3, overflowX: 'auto' }}>
           <TableContainer>
-            <Table>
+            <Table sx={{ minWidth: 550 }}>
               <TableHead>
                 <TableRow sx={{ bgcolor: '#fafafa' }}>
                   <TableCell sx={{ fontWeight: 700, textTransform: 'uppercase', fontSize: 12 }}>Produto</TableCell>
@@ -238,7 +238,7 @@ const NovoPedido = () => {
         </Paper>
       )}
 
-      <Box sx={{ display: 'flex', gap: 2, mt: 3 }}>
+      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, mt: 3 }}>
         <Button
           variant="outlined"
           onClick={() => { setItens([]); navigate('/faturamento'); }}

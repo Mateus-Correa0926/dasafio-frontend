@@ -41,15 +41,7 @@ A API é o my-json-server do typicode. Ela simula operações de escrita (POST, 
 Pra contornar isso, todas as operações de CRUD (criar, editar, deletar produto e criar pedido) fazem a chamada pra API normalmente e depois atualizam o estado local no React. O usuário vê o resultado na hora, mas se der F5 volta ao original. Isso é limitação da API gratuita, não do frontend.
 
 
+## Responsivo pra mobile
 
-### Toast não aparece
-Solução: Verifique console para erros (F12 > Console)
-
-### Estilos não aparecem
-Solução: Limpe cache do navegador (Ctrl+Shift+Delete)
-
-
-## Licença
-
-MIT Use livremente em seus projetos
+O sistema foi pensado pra funcionar no celular também, pra aquele cenário de alguém que precisa checar o estoque rápido sem estar na frente do computador. No mobile o menu vira um drawer lateral (ícone de hambúrguer), as tabelas rolam na horizontal pra não quebrar layout e os botões e campos se empilham pra caber na tela. Dá pra consultar produtos, ver vendas e até criar pedido direto pelo celular sem problema.
 

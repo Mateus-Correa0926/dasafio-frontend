@@ -91,7 +91,7 @@ const CadastrarProduto = () => {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ fontWeight: 700, mb: 4 }}>
+      <Typography variant="h5" sx={{ fontWeight: 700, mb: { xs: 2, md: 4 }, fontSize: { xs: 20, md: 24 } }}>
         {editingProduto ? 'Editar Produto' : 'Cadastrar Novo Produto'}
       </Typography>
 

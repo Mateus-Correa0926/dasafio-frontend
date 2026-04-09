@@ -84,7 +84,7 @@ const Produtos = () => {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ fontWeight: 700, mb: 4 }}>Produtos Cadastrados</Typography>
+      <Typography variant="h5" sx={{ fontWeight: 700, mb: { xs: 2, md: 4 }, fontSize: { xs: 20, md: 24 } }}>Produtos Cadastrados</Typography>
 
       <Box sx={{ display: 'flex', gap: 1, mb: 2, alignItems: 'center' }}>
         <TextField fullWidth variant="outlined" placeholder="Buscar por nome ou grupo..." size="small"
@@ -131,8 +131,8 @@ const Produtos = () => {
         </Paper>
       </Collapse>
 
-      <TableContainer component={Paper} elevation={0} sx={{ border: '1px solid #e5e5e5' }}>
-        <Table>
+      <TableContainer component={Paper} elevation={0} sx={{ border: '1px solid #e5e5e5', overflowX: 'auto' }}>
+        <Table sx={{ minWidth: 600 }}>
           <TableHead>
             <TableRow sx={{ bgcolor: '#fafafa' }}>
               {columns.map((col) => (

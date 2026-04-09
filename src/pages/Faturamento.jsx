@@ -205,8 +205,8 @@ const VendasTable = ({ vendas: allVendas }) => {
         </Paper>
       </Collapse>
 
-      <TableContainer component={Paper} elevation={0} sx={{ border: '1px solid #e5e5e5' }}>
-        <Table>
+      <TableContainer component={Paper} elevation={0} sx={{ border: '1px solid #e5e5e5', overflowX: 'auto' }}>
+        <Table sx={{ minWidth: 500 }}>
           <TableHead>
             <TableRow sx={{ bgcolor: '#fafafa' }}>
               {columns.map((col) => (
@@ -248,7 +248,7 @@ const Faturamento = () => {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ fontWeight: 700, mb: 3 }}>Faturamento</Typography>
+      <Typography variant="h5" sx={{ fontWeight: 700, mb: 3, fontSize: { xs: 20, md: 24 } }}>Faturamento</Typography>
       <Tabs value={tab} onChange={(_, v) => setTab(v)} sx={{ mb: 3, borderBottom: '1px solid #e5e5e5' }}>
         <Tab label="Vendas" />
         <Tab label="Dashboard" />
